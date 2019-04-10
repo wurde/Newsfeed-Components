@@ -1,4 +1,4 @@
-// Because classes are not hoisted you will need to start your code at the bottom of the page.  Look for the comment "START HERE"
+'use strict'
 
 /**
  * Constants
@@ -12,25 +12,27 @@ const articles = Array.from(document.getElementsByClassName('article'))
 
 class Article {
   constructor(domElement) {
-    // assign this.domElement to the passed in domElement
     this.domElement = domElement
-    // create a reference to the ".expandButton" class.
+    this.isExpanded = false
     this.expandButton = this.domElement.querySelector('.expandButton')
-    // Using your expandButton reference, update the text on your expandButton to say "expand"
     this.expandButton.textContent = 'expand'
-    // Set a click handler on the expandButton reference, calling the expandArticle method.
-    this.expandButton.addEventListener('click', () => this.expandArticle())
+    this.expandButton.addEventListener(
+      'click', () => this.isExpanded ? this.closeArticle() : this.expandArticle()
+    )
   }
 
   expandArticle() {
-    // Using our reference to the domElement, toggle a class to expand or hide the article.
+    this.isExpanded = true
     this.domElement.classList.add('article-open')
     this.domElement.classList.remove('close')
+    this.expandButton.textContent = 'close'
   }
 
   closeArticle() {
+    this.isExpanded = false
     this.domElement.classList.add('close')
     this.domElement.classList.remove('article-open')
+    this.expandButton.textContent = 'expand'
   }
 }
 
