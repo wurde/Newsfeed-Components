@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "live-server",
-    "build": "less-watch-compiler LESS CSS index.less"
+    "build": "less-watch-compiler LESS CSS index.less",
+    "build:watch": "less-watch-compiler LESS CSS index.less --watch"
   },
   "repository": {
     "type": "git",
